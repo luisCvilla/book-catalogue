@@ -1,0 +1,18 @@
+{
+  "books": [
+    {
+      "id": "pride-and-prejudice",
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "rating": 3,
+      "writtenLocation": "England",
+      "settingLocation": "Regency England",
+      "writtenPeriod": "1813",
+      "settingPeriod": "Early 19th century",
+      "quotes": [
+        "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife."
+      ],
+      "summary": "Elizabeth Bennet navigates society, family pressure, and her evolving relationship with the proud Mr. Darcy in a novel of wit, manners, and romantic misunderstanding."
+    }
+  ]
+}

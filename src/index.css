@@ -1,0 +1,317 @@
+:root {
+  --bg: #f5f0e8;
+  --bg-card: #fffdf9;
+  --text: #2c2419;
+  --text-muted: #6b5d4f;
+  --accent: #5c4a3a;
+  --accent-hover: #3d3026;
+  --border: #ddd4c8;
+  --error: #8b3a3a;
+  --shadow: 0 2px 12px rgba(44, 36, 25, 0.08);
+  --font-serif: "Crimson Pro", Georgia, serif;
+  --font-sans: "Source Sans 3", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+h1 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.splash-header {
+  margin-bottom: 2.5rem;
+}
+
+.book-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.book-menu-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.book-menu-item:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.book-menu-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.book-menu-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.book-menu-stars {
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.star-dim {
+  color: var(--border);
+}
+
+.add-more-btn {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: transparent;
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.add-more-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: rgba(92, 74, 58, 0.06);
+}
+
+.add-more-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.back-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.book-page-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.save-indicator {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.save-saving {
+  color: var(--text-muted);
+}
+
+.save-saved {
+  color: #4a6b4a;
+}
+
+.save-error {
+  color: var(--error);
+}
+
+.book-title-input {
+  width: 100%;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 600;
+  border: none;
+  border-bottom: 2px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  padding: 0.25rem 0 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.book-title-input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+.field-section {
+  margin-bottom: 1.75rem;
+}
+
+.field-section > label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.field-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.field label {
+  display: block;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+  color: var(--text-muted);
+}
+
+.field input,
+.summary-input,
+.quote-input {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-card);
+  color: var(--text);
+}
+
+.field input:focus,
+.summary-input:focus,
+.quote-input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.star-rating {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.star {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  color: var(--border);
+  cursor: pointer;
+  padding: 0 0.1rem;
+  line-height: 1;
+  transition: color 0.1s, transform 0.1s;
+}
+
+.star:hover,
+.star-filled {
+  color: var(--accent);
+}
+
+.star:hover {
+  transform: scale(1.1);
+}
+
+.quote-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quote-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.quote-empty {
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0 0 0.5rem;
+}
+
+.btn-secondary,
+.btn-ghost {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 0.45rem 0.85rem;
+}
+
+.btn-secondary {
+  align-self: flex-start;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  font-weight: 500;
+}
+
+.btn-secondary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-ghost {
+  align-self: flex-end;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+}
+
+.btn-ghost:hover {
+  color: var(--error);
+}
+
+.status-message {
+  color: var(--text-muted);
+}
+
+.error-message {
+  color: var(--error);
+  margin-top: 1rem;
+}

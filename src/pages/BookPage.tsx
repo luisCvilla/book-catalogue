@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { fetchBook, updateBook } from "../api/booksApi";
 import { QuoteList } from "../components/QuoteList";
+import { ReadingStatusPicker } from "../components/ReadingStatusPicker";
 import { StarRating } from "../components/StarRating";
 import type { Book } from "../types/book";
 
@@ -103,6 +104,14 @@ export function BookPage() {
         <StarRating
           value={book.rating}
           onChange={(rating) => updateField("rating", rating)}
+        />
+      </section>
+
+      <section className="field-section">
+        <label>Reading status</label>
+        <ReadingStatusPicker
+          value={book.readingStatus}
+          onChange={(readingStatus) => updateField("readingStatus", readingStatus)}
         />
       </section>
 

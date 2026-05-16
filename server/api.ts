@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { Book, BooksData } from "../src/types/book";
-import { createDefaultBook, isBook } from "../src/types/book";
+import { createDefaultBook, isBook, normalizeBook } from "../src/types/book";
 
 const DATA_PATH = join(process.cwd(), "data", "books.json");
 
@@ -9,7 +9,12 @@ let writeChain: Promise<void> = Promise.resolve();
 
 async function readData(): Promise<BooksData> {
   const raw = await readFile(DATA_PATH, "utf-8");
-  return JSON.parse(raw) as BooksData;
+  const data = JSON.parse(raw) as BooksData;
+  return {
+    books: data.books.map((book) =>
+      normalizeBook(book as Book & { progress?: number; readingStatus?: string }),
+    ),
+  };
 }
 
 async function writeData(data: BooksData): Promise<void> {
@@ -46,9 +51,10 @@ export async function updateBook(id: string, book: Book): Promise<Book | null> {
   if (index === -1) {
     return null;
   }
-  data.books[index] = book;
+  const normalized = normalizeBook(book);
+  data.books[index] = normalized;
   await writeData(data);
-  return book;
+  return normalized;
 }
 
 export function sendJson(

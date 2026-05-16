@@ -4,7 +4,8 @@
       "id": "pride-and-prejudice",
       "title": "Pride and Prejudice",
       "author": "Jane Austen",
-      "rating": 3,
+      "rating": 0,
+      "readingStatus": "not-started",
       "writtenLocation": "England",
       "settingLocation": "Regency England",
       "writtenPeriod": "1813",
@@ -13,6 +14,19 @@
         "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife."
       ],
       "summary": "Elizabeth Bennet navigates society, family pressure, and her evolving relationship with the proud Mr. Darcy in a novel of wit, manners, and romantic misunderstanding."
+    },
+    {
+      "id": "dc30f4cf-a439-4298-9a05-f4bbfdebd93a",
+      "title": "Untitled",
+      "author": "",
+      "rating": 0,
+      "readingStatus": "not-started",
+      "writtenLocation": "",
+      "settingLocation": "",
+      "writtenPeriod": "",
+      "settingPeriod": "",
+      "quotes": [],
+      "summary": ""
     }
   ]
 }

@@ -108,6 +108,70 @@ h1 {
   color: var(--border);
 }
 
+.progress-marker {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.book-menu-item .progress-marker {
+  margin-top: 0.35rem;
+}
+
+.progress-marker--not-started {
+  color: var(--text-muted);
+  background: var(--border);
+}
+
+.progress-marker--in-progress {
+  color: #5c4a3a;
+  background: #e8dfd0;
+}
+
+.progress-marker--completed {
+  color: #f5f0e8;
+  background: #4a6b4a;
+}
+
+.reading-status-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.reading-status-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.reading-status-btn {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-card);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.reading-status-btn:hover {
+  border-color: var(--accent);
+}
+
+.reading-status-btn--active {
+  border-color: var(--accent);
+  background: #e8dfd0;
+  font-weight: 600;
+}
+
 .add-more-btn {
   width: 100%;
   padding: 1rem 1.25rem;
@@ -234,7 +298,43 @@ h1 {
 
 .star-rating {
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.star-rating-stars {
+  display: flex;
   gap: 0.25rem;
+}
+
+.star-rating-unrated {
+  align-self: flex-start;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-card);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.star-rating-unrated:hover {
+  border-color: var(--accent);
+}
+
+.star-rating-unrated--active {
+  border-color: var(--accent);
+  background: #e8dfd0;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.book-menu-unrated {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
 }
 
 .star {

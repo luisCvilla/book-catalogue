@@ -1,14 +1,12 @@
 import { readFile, writeFile } from "node:fs/promises";
-import { join } from "node:path";
 import type { Book, BooksData } from "../src/types/book";
 import { createDefaultBook, isBook, normalizeBook } from "../src/types/book";
-
-const DATA_PATH = join(process.cwd(), "data", "books.json");
+import { getDataPath } from "./dataStore";
 
 let writeChain: Promise<void> = Promise.resolve();
 
 async function readData(): Promise<BooksData> {
-  const raw = await readFile(DATA_PATH, "utf-8");
+  const raw = await readFile(getDataPath(), "utf-8");
   const data = JSON.parse(raw) as BooksData;
   return {
     books: data.books.map((book) =>
@@ -19,7 +17,7 @@ async function readData(): Promise<BooksData> {
 
 async function writeData(data: BooksData): Promise<void> {
   writeChain = writeChain.then(() =>
-    writeFile(DATA_PATH, `${JSON.stringify(data, null, 2)}\n`, "utf-8"),
+    writeFile(getDataPath(), `${JSON.stringify(data, null, 2)}\n`, "utf-8"),
   );
   await writeChain;
 }

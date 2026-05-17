@@ -1,11 +1,18 @@
 import express from "express";
 import { join } from "node:path";
-import { booksApiMiddleware } from "./server/middleware";
 import type { IncomingMessage, ServerResponse } from "node:http";
+import { ensureDataStore } from "./server/dataStore";
+import { booksApiMiddleware } from "./server/middleware";
 
 const app = express();
 const port = Number(process.env.PORT) || 4173;
 const distPath = join(process.cwd(), "dist");
+
+await ensureDataStore();
+
+app.get("/api/health", (_req, res) => {
+  res.json({ status: "ok" });
+});
 
 app.use((req, res, next) => {
   booksApiMiddleware(
@@ -22,5 +29,8 @@ app.get(/^(?!\/api).*/, (_req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Book Catalogue running at http://localhost:${port}`);
+  console.log(`Book Catalogue running on port ${port}`);
+  if (process.env.DATA_PATH) {
+    console.log(`Data file: ${process.env.DATA_PATH}`);
+  }
 });

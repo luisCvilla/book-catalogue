@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { fetchBook, updateBook } from "../api/booksApi";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { deleteBook, fetchBook, updateBook } from "../api/booksApi";
 import { QuoteList } from "../components/QuoteList";
 import { ReadingStatusPicker } from "../components/ReadingStatusPicker";
 import { StarRating } from "../components/StarRating";
@@ -10,9 +10,11 @@ type SaveStatus = "idle" | "saving" | "saved" | "error";
 
 export function BookPage() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [book, setBook] = useState<Book | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const bookRef = useRef<Book | null>(null);
@@ -57,6 +59,25 @@ export function BookPage() {
       if (saveTimer.current) clearTimeout(saveTimer.current);
     };
   }, []);
+
+  const handleDelete = async () => {
+    if (!id || !book) return;
+    const confirmed = window.confirm(
+      `Delete "${book.title}" from your library? This cannot be undone.`,
+    );
+    if (!confirmed) return;
+
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    setDeleting(true);
+    setError(null);
+    try {
+      await deleteBook(id);
+      navigate("/");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to delete book");
+      setDeleting(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -161,6 +182,17 @@ export function BookPage() {
           placeholder="Your thoughts on the book…"
           onChange={(e) => updateField("summary", e.target.value)}
         />
+      </section>
+
+      <section className="delete-section">
+        <button
+          type="button"
+          className="btn-delete"
+          onClick={handleDelete}
+          disabled={deleting}
+        >
+          {deleting ? "Deleting…" : "Delete book"}
+        </button>
       </section>
 
       {error && <p className="error-message">{error}</p>}

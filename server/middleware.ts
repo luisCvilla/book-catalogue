@@ -1,6 +1,7 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import {
   createBook,
+  deleteBook,
   getAllBooks,
   getBookById,
   parseJsonBody,
@@ -69,6 +70,17 @@ async function handleBooksApi(req: IncomingMessage, res: ServerResponse) {
         return;
       }
       sendJson(res, 200, updated);
+      return;
+    }
+
+    if (method === "DELETE" && id) {
+      const deleted = await deleteBook(id);
+      if (!deleted) {
+        sendJson(res, 404, { error: "Book not found" });
+        return;
+      }
+      res.statusCode = 204;
+      res.end();
       return;
     }
 

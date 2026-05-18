@@ -415,3 +415,31 @@ h1 {
   color: var(--error);
   margin-top: 1rem;
 }
+
+.delete-section {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.btn-delete {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--error);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--error);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-delete:hover:not(:disabled) {
+  background: var(--error);
+  color: var(--bg);
+}
+
+.btn-delete:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}

@@ -40,6 +40,17 @@ export async function createBook(partial?: Partial<Book>): Promise<Book> {
   return book;
 }
 
+export async function deleteBook(id: string): Promise<boolean> {
+  const data = await readData();
+  const index = data.books.findIndex((b) => b.id === id);
+  if (index === -1) {
+    return false;
+  }
+  data.books.splice(index, 1);
+  await writeData(data);
+  return true;
+}
+
 export async function updateBook(id: string, book: Book): Promise<Book | null> {
   if (!isBook(book) || book.id !== id) {
     return null;

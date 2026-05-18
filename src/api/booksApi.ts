@@ -38,3 +38,11 @@ export async function updateBook(book: Book): Promise<Book> {
     }),
   );
 }
+
+export async function deleteBook(id: string): Promise<void> {
+  const res = await fetch(`/api/books/${id}`, { method: "DELETE" });
+  if (!res.ok) {
+    const err = (await res.json().catch(() => ({}))) as { error?: string };
+    throw new Error(err.error ?? `Request failed: ${res.status}`);
+  }
+}
